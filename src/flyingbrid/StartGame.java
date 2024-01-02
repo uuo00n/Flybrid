@@ -18,11 +18,12 @@ public class StartGame {
         frame.add(game);
 //        布局样式---居中
         frame.setLocationRelativeTo(null);
-//        添加可视化窗口
-        frame.setVisible(true);
 //        关闭应用程序
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+//        添加可视化窗口
+        frame.setVisible(true);
+//        开始游戏
+        game.action();
 
     }
 }
