@@ -27,6 +27,8 @@ public class BirdGame extends JPanel {
     public Ground ground;
     //    声明小鸟
     public Bird bird;
+    //    声明管道(用来存放两个管道)
+    public Column columns[];
 
     //    赋值
     public BirdGame() {
@@ -36,6 +38,12 @@ public class BirdGame extends JPanel {
             ground = new Ground();
 //            创建小鸟对象
             bird = new Bird();
+//            创建管道对象，赋予长度
+            columns = new Column[2];
+//            创建第一个管道对象
+            columns[0] = new Column();
+//            创建第二个管道对象
+            columns[1] = new Column();
 //            异常：程序在运行时发生不可控的事件
 //            getClass().getResource() 获取资源路径
             bg = ImageIO.read(getClass().getResource("./img/bg.png"));
@@ -45,7 +53,7 @@ public class BirdGame extends JPanel {
             MouseAdapter adapter = new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    switch (state){
+                    switch (state) {
                         case STATRT:
                             state = RUNNING;
                             break;
@@ -71,18 +79,20 @@ public class BirdGame extends JPanel {
     //    画画(Graphics 画笔)
     public void paint(Graphics g) {
         g.drawImage(bg, 0, 0, null);
-        g.drawImage(ground.image, ground.x, ground.y, null);
         g.drawImage(bird.bImage, bird.x, bird.y, null);
         switch (state) {
             case STATRT:
                 g.drawImage(gstart, 0, 0, null);
                 break;
             case RUNNING:
+                g.drawImage(columns[0].cImage, columns[0].x, columns[0].y, null);
+                g.drawImage(columns[1].cImage, columns[1].x, columns[1].y, null);
                 break;
             case END:
                 g.drawImage(gend, 0, 0, null);
                 break;
         }
+        g.drawImage(ground.image, ground.x, ground.y, null);
     }
 
     //    游戏开始
@@ -98,7 +108,7 @@ public class BirdGame extends JPanel {
                     ground.step();
                     bird.fly();
                     bird.down();
-                    if (isHitGround()){
+                    if (isHitGround()) {
                         state = END;
                         break;
                     }
@@ -116,10 +126,11 @@ public class BirdGame extends JPanel {
         }
 //        让地面一直动起来,重新绘制，一直进行循环
     }
-    public boolean isHitGround(){
-        if (bird.y<500-bird.height){
+
+    public boolean isHitGround() {
+        if (bird.y < 500 - bird.height) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
