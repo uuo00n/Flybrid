@@ -23,6 +23,8 @@ public class BirdGame extends JPanel {
 
     //    声明地面
     public Ground ground;
+    //    声明小鸟
+    public Bird bird;
 
     //    赋值
     public BirdGame() {
@@ -30,6 +32,8 @@ public class BirdGame extends JPanel {
             state = STATRT;
 //            创建ground对象，调用Ground类
             ground = new Ground();
+//            创建小鸟对象
+            bird = new Bird();
 //            异常：程序在运行时发生不可控的事件
 //            getClass().getResource() 获取资源路径
             bg = ImageIO.read(getClass().getResource("./img/bg.png"));
@@ -46,6 +50,7 @@ public class BirdGame extends JPanel {
     public void paint(Graphics g) {
         g.drawImage(bg, 0, 0, null);
         g.drawImage(ground.image, ground.x, ground.y, null);
+        g.drawImage(bird.bImage, bird.x, bird.y, null);
         switch (state) {
             case STATRT:
                 g.drawImage(gstart, 0, 0, null);
@@ -73,9 +78,9 @@ public class BirdGame extends JPanel {
                     break;
             }
             repaint();
-            try{
-                Thread.sleep(1000/60);
-            }catch (InterruptedException e){
+            try {
+                Thread.sleep(1000 / 60);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
