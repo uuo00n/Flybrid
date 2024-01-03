@@ -19,11 +19,12 @@ public class Column {
     int width, height;
     //    管道个数
     static int count = 0;
-
+    //    两个管道之间的距离
     int distance = 270;
-
+    //    随机数
     Random random = new Random();
-
+    //    管道缝隙
+    int gap = 144;
 
     public Column() {
         try {
@@ -47,7 +48,7 @@ public class Column {
         //从第一个管道---第三个管道
         if (x == width / 2) {
             x = x + distance * 2;
-            y = random.nextInt(300)+100-height/2;
+            y = random.nextInt(300) + 100 - height / 2;
         }
     }
 }

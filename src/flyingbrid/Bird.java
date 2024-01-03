@@ -26,7 +26,7 @@ public class Bird {
     //    上抛速度
     double upSpeed = 20;
     //    重力加速度（小鸟默认往下掉的速度）
-    double g = 9.8;
+    double g = 6.8;
     //    位移时间
     double t = 0.2;
     //    小鸟位移
