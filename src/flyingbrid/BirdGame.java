@@ -112,6 +112,8 @@ public class BirdGame extends JPanel {
                         state = END;
                         break;
                     }
+                    columns[0].step();
+                    columns[1].step();
                     break;
                 case END:
                     break;

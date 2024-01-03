@@ -39,4 +39,15 @@ public class Column {
 //        控制管道操作
         count++;
     }
+
+    //    管道移动
+    public void step() {
+        //从右往左移动
+        x--;
+        //从第一个管道---第三个管道
+        if (x == width / 2) {
+            x = x + distance * 2;
+            y = random.nextInt(300)+100-height/2;
+        }
+    }
 }
