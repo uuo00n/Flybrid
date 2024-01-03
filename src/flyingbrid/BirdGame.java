@@ -3,6 +3,8 @@ package flyingbrid;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -40,6 +42,26 @@ public class BirdGame extends JPanel {
             gstart = ImageIO.read(getClass().getResource("./img/start.png"));
             gend = ImageIO.read(getClass().getResource("./img/gameover.png"));
 
+            MouseAdapter adapter = new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    switch (state){
+                        case STATRT:
+                            state = RUNNING;
+                            break;
+                        case RUNNING:
+                            bird.up();
+                            break;
+                        case END:
+                            state = STATRT;
+                            bird.x = 120;
+                            bird.y = 220;
+                            bird.v = 0;
+                            break;
+                    }
+                }
+            };
+            this.addMouseListener(adapter);
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("图片未找到！");
@@ -75,6 +97,11 @@ public class BirdGame extends JPanel {
                 case RUNNING:
                     ground.step();
                     bird.fly();
+                    bird.down();
+                    if (isHitGround()){
+                        state = END;
+                        break;
+                    }
                     break;
                 case END:
                     break;
@@ -88,5 +115,12 @@ public class BirdGame extends JPanel {
 
         }
 //        让地面一直动起来,重新绘制，一直进行循环
+    }
+    public boolean isHitGround(){
+        if (bird.y<500-bird.height){
+            return false;
+        }else {
+            return true;
+        }
     }
 }

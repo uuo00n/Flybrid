@@ -9,7 +9,7 @@ import javax.swing.*;
 public class StartGame {
     public static void main(String[] args) {
 //        绘制游戏窗口
-        JFrame frame = new JFrame("飞扬的小鸟");
+        JFrame frame = new JFrame("飞翔的小乐");
 //        设置窗口大小
         frame.setSize(432, 644);
 //        创建画板对象
