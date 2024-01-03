@@ -70,9 +70,11 @@ public class BirdGame extends JPanel {
             switch (state) {
                 case STATRT:
                     ground.step();
+                    bird.fly();
                     break;
                 case RUNNING:
                     ground.step();
+                    bird.fly();
                     break;
                 case END:
                     break;

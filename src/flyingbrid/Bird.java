@@ -19,7 +19,8 @@ public class Bird {
     int height, width;
     //    坐标
     int x, y;
-
+//    初始位置下标
+    int index = 0;
     public Bird() {
         try {
             bImage = ImageIO.read(getClass().getResource("./img/0.png"));
@@ -37,5 +38,11 @@ public class Bird {
             e.printStackTrace();
             System.out.println("图片未找到");
         }
+    }
+//    小鸟飞
+    public void fly(){
+//        连续访问0~7张图片(变成小数)
+        bImage = bImages[index/10%8];
+        index++;
     }
 }
